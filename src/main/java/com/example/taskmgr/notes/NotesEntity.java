@@ -1,28 +1,26 @@
-package com.example.taskmgr.tasks;
+package com.example.taskmgr.notes;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.example.taskmgr.tasks.TaskEntity;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import java.util.Date;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-@Entity(name="tasks")
-public class TaskEntity {
+@Entity(name="notes")
+public class NotesEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String title;
     private String description;
-    private Date dueDate;
-    private boolean completed;
+    @ManyToOne(targetEntity = TaskEntity.class)
+    private TaskEntity task;
 
 
 }
