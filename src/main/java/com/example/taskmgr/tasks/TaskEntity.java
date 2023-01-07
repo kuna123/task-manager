@@ -1,14 +1,15 @@
 package com.example.taskmgr.tasks;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.example.taskmgr.notes.NotesEntity;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+
 import java.util.Date;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -23,6 +24,8 @@ public class TaskEntity {
     private String description;
     private Date dueDate;
     private boolean completed;
+    @OneToMany(targetEntity = NotesEntity.class,cascade =CascadeType.ALL,mappedBy ="task")
+    private List<NotesEntity> notes;
 
 
 }
